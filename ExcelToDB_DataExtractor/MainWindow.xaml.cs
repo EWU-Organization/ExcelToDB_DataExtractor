@@ -11,7 +11,6 @@ namespace ExcelToDB_DataExtractor
     public partial class MainWindow : Window
     {
         private string[]? _excelFilesPath;
-        //private string? _saveToPath;
 
         public MainWindow()
         {

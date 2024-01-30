@@ -1,7 +1,4 @@
-﻿using DocumentFormat.OpenXml.Packaging;
-using DocumentFormat.OpenXml.Spreadsheet;
-
-namespace ExcelToDB_DataExtractor.Utils
+﻿namespace ExcelToDB_DataExtractor.Utils
 {
     internal static class ExcelExtractor
     {
@@ -12,6 +9,7 @@ namespace ExcelToDB_DataExtractor.Utils
                 foreach (var file in directoryPath)
                 {
                     ProcessExcelFile(file);
+                    ExcelUtility.Dispose();
                 }
             }
             catch (Exception ex)
@@ -22,56 +20,10 @@ namespace ExcelToDB_DataExtractor.Utils
 
         static void ProcessExcelFile(string file)
         {
-            using (SpreadsheetDocument spreadsheetDocument = SpreadsheetDocument.Open(file, false))
-            {
-                // Access the workbook part
-                WorkbookPart? workbookPart = spreadsheetDocument.WorkbookPart;
-                Sheet? sheet = workbookPart?.Workbook?.Descendants<Sheet>().FirstOrDefault(); ;
+            ExcelUtility.Initialize(file);
 
-                foreach (var item in workbookPart.Workbook.Descendants<Sheet>())
-                {
-                    if (item.Name == "PO") sheet = workbookPart?.Workbook?.Descendants<Sheet>().FirstOrDefault(s => s.Name == item.Name);
-                }
-
-                if (sheet != null)
-                {
-                    // Access the worksheet part
-                    WorksheetPart? worksheetPart = (WorksheetPart)workbookPart.GetPartById(sheet.Id);
-
-                    // Get the sheet data
-                    SheetData sheetData = worksheetPart.Worksheet.Elements<SheetData>().First();
-
-                    // Iterate through rows and cells
-                    foreach (Row row in sheetData.Elements<Row>())
-                    {
-                        foreach (Cell cell in row.Elements<Cell>())
-                        {
-                            // Access the cell value
-                            string cellValue = GetCellValue(cell, workbookPart);
-                            Console.Out.WriteLine($"{cellValue}\t");
-                        }
-
-                        Console.WriteLine(); // Move to the next row
-                    }
-                }
-            }
-        }
-
-        static string GetCellValue(Cell cell, WorkbookPart workbookPart)
-        {
-            SharedStringTablePart? stringTablePart = workbookPart.GetPartsOfType<SharedStringTablePart>().FirstOrDefault();
-
-            if (cell.DataType != null && cell.DataType.Value == CellValues.SharedString && stringTablePart != null)
-            {
-                // If the cell contains a shared string, get the value from the shared string table
-                int index = int.Parse(cell.InnerText);
-                return stringTablePart.SharedStringTable.Elements<SharedStringItem>().ElementAt(index).InnerText;
-            }
-            else
-            {
-                // Otherwise, get the cell value directly
-                return cell.InnerText;
-            }
+            var test = ExcelUtility.CellValue(25, 3);
+            Console.WriteLine(test);
         }
     }
 }
