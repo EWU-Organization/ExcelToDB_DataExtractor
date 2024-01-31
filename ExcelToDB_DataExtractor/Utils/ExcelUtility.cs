@@ -1,5 +1,6 @@
 ﻿using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
+using System.Text.RegularExpressions;
 
 namespace ExcelToDB_DataExtractor.Utils
 {
@@ -9,19 +10,20 @@ namespace ExcelToDB_DataExtractor.Utils
         private static WorksheetPart? _WorksheetPart;
         private static SpreadsheetDocument? _SpreadsheetDocument;
 
-        public static void Initialize(string file)
+        /// <summary>
+        /// Initialize the ExcelUtility class with an excel file and sheet name
+        /// </summary>
+        /// <param name="file">File path to .xlsx file</param>
+        /// <param name="sheetName">An excel sheet that is in the .xlsx file</param>
+        public static void Initialize(string file, string sheetName)
         {
             _SpreadsheetDocument = SpreadsheetDocument.Open(file, false);
-            
+
             // Access the workbook part
             _WorkbookPart = _SpreadsheetDocument.WorkbookPart;
-            Sheet? sheet = _WorkbookPart?.Workbook.Descendants<Sheet>().FirstOrDefault(); ;
+            Sheet? sheet = _WorkbookPart.Workbook.Descendants<Sheet>().FirstOrDefault(s => s.Name == sheetName);
 
-            foreach (var item in _WorkbookPart.Workbook.Descendants<Sheet>())
-            {
-                if (item.Name == "Entry") sheet = _WorkbookPart.Workbook.Descendants<Sheet>().FirstOrDefault(s => s.Name == item.Name);
-            }
-            _WorksheetPart = (WorksheetPart)_WorkbookPart.GetPartById(sheet.Id);
+            if (sheet != null) _WorksheetPart = (WorksheetPart)_WorkbookPart.GetPartById(sheet.Id);
         }
         private static string GetCellValue(Cell cell, WorkbookPart workbookPart)
         {
@@ -72,10 +74,48 @@ namespace ExcelToDB_DataExtractor.Utils
             return null;
         }
 
+        /// <summary>
+        /// Returns the number of rows in the excel sheet
+        /// </summary>
+        /// <returns>int</returns>
+        public static int GetNumberOfRows()
+        {
+            if (_WorksheetPart != null) return (int)(_WorksheetPart?.Worksheet.Descendants<Row>().Count());
+            else return 0;
+        }
+
         public static void Dispose()
         {
             _SpreadsheetDocument?.Dispose();
             _SpreadsheetDocument = null;
+            _WorkbookPart = null;
+            _WorksheetPart = null;
+        }
+
+        public static int ParseInteger(string input)
+        {
+            if (input == null) return 0;
+            MatchCollection matches = new Regex(@"\d+").Matches(input);
+
+            int number = 0;
+            foreach (Match match in matches)
+            {
+                number = int.Parse(match.Value);
+            }
+            return number;
+        }
+        public static double ParseDouble(string input)
+        {
+            if (input == null) return 0;
+            MatchCollection matches = new Regex(@"\d+(\.\d+)?").Matches(input);
+
+            // Extract and print the integers
+            double number = 0;
+            foreach (Match match in matches)
+            {
+                number = double.Parse(match.Value);
+            }
+            return number;
         }
     }
 }

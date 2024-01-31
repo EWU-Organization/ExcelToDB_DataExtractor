@@ -26,10 +26,9 @@ namespace ExcelToDB_DataExtractor
 
             if (folderBrowserDialog.ShowDialog() == true)
             {
-                folderPathTextBlock.Text = folderBrowserDialog.FolderName;
-
                 // Read Excel files
                 _excelFilesPath = Directory.GetFiles(folderBrowserDialog.FolderName, "*.xlsx");
+                folderPathTextBlock.Text = $"Number of files found: {_excelFilesPath.Length}";
                 folderPathTextBlock.Visibility = Visibility.Visible;
                 if (_excelFilesPath.Count() < 1)
                 {
@@ -39,7 +38,7 @@ namespace ExcelToDB_DataExtractor
             }
         }
 
-        private void Process_GenerateReport_Click(object sender, RoutedEventArgs e)
+        private void Execute_Click(object sender, RoutedEventArgs e)
         {
             if (_excelFilesPath?.Length >= 1)
             {

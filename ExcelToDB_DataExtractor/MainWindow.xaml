@@ -5,21 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ExcelToDB_DataExtractor"
         mc:Ignorable="d"
-        Title="Excel To Database" Height="350" Width="350">
+        Title="Excel To Database" Height="285" Width="370" WindowStartupLocation="CenterScreen">
     <Grid>
-        <Grid.Background>
-            <RadialGradientBrush SpreadMethod="Pad" MappingMode="RelativeToBoundingBox" RadiusX="2.5" RadiusY="2.5" Center="0,0" GradientOrigin="0,0">
-                <RadialGradientBrush.RelativeTransform>
-                    <TransformGroup>
-                        <RotateTransform Angle="55" CenterX="1" CenterY="0.5"/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </RadialGradientBrush.RelativeTransform>
-                <GradientStop Color="#FF1CA6AA" Offset="0"/>
-                <GradientStop Color="#FF033B45" Offset="1"/>
-            </RadialGradientBrush>
-        </Grid.Background>
-        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20" />
             <ColumnDefinition Width="*" />
@@ -29,22 +16,41 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
 
-        <Label Content="Excel To Database" Grid.Row="1" Grid.Column="1" FontSize="28" HorizontalAlignment="Center"/>
-        <TextBlock x:Name="folderPathTextBlock" Visibility="Collapsed" Grid.Row="2" Grid.Column="1" Height="40" Width="280" TextWrapping="Wrap" Margin="5"/>
+        <Label Content="Excel To Database Extractor" Grid.Row="1" Grid.Column="1" FontSize="24"/>
+        <Label Content="Select Folder with Excel Files" Grid.Row="2" Grid.Column="1" FontSize="14" FontWeight="DemiBold"/>
 
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="top" Grid.Row="3" Grid.Column="1">
-            <Button Content="Select Folder" Width="120" Click="SelectExcelFilesFolder_Click"/>
-            <ComboBox Margin="10">
-                <ComboBoxItem Content="PO"/>
-                <ComboBoxItem Content="Data"/>
-            </ComboBox>
-        </StackPanel>
-        <Button Content="Export to Database" Width="250" Height="30" VerticalAlignment="Bottom" Grid.Row="3" Grid.Column="1" Click="Process_GenerateReport_Click"/>
+        <Button Content="Select Folder" Height="40" Width="320" Grid.Row="3" Grid.Column="1" Margin="5" FontSize="16" Click="SelectExcelFilesFolder_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        
+        <TextBlock x:Name="folderPathTextBlock" FontSize="16" Grid.Row="4" Grid.Column="1" Margin="5,0,0,0"/>
 
+        <Button Content="Execute" Height="40" Width="90" Grid.Row="5" Grid.Column="1" Margin="5" Background="#3b82f6" Foreground="White" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Execute_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+
+        <ProgressBar x:Name="progressBar" Grid.Row="6" Grid.Column="1" Height="5" IsIndeterminate="True" Visibility="Visible">
+            <ProgressBar.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="2"/>
+                </Style>
+            </ProgressBar.Resources>
+        </ProgressBar>
     </Grid>
 </Window>
