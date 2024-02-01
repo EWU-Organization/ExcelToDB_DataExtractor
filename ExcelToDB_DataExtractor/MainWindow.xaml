@@ -24,10 +24,10 @@
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
 
-        <Label Content="Excel To Database Extractor" Grid.Row="1" Grid.Column="1" FontSize="24"/>
-        <Label Content="Select Folder with Excel Files" Grid.Row="2" Grid.Column="1" FontSize="14" FontWeight="DemiBold"/>
+        <TextBlock Text="Excel To Database Extractor" Grid.Row="1" Grid.Column="1" FontSize="24"/>
+        <TextBlock Text="Select Folder with Excel Files" Grid.Row="2" Grid.Column="1" Margin="0,5,0,10" FontSize="14" FontWeight="DemiBold"/>
 
-        <Button Content="Select Folder" Height="40" Width="320" Grid.Row="3" Grid.Column="1" Margin="5" FontSize="16" Click="SelectExcelFilesFolder_Click">
+        <Button Content="Select Folder" Height="40" Width="315" Grid.Row="3" Grid.Column="1" FontSize="16" Click="SelectExcelFilesFolder_Click">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="5"/>
@@ -35,9 +35,9 @@
             </Button.Resources>
         </Button>
         
-        <TextBlock x:Name="folderPathTextBlock" FontSize="16" Grid.Row="4" Grid.Column="1" Margin="5,0,0,0"/>
+        <TextBlock x:Name="folderPathTextBlock" FontSize="16" Grid.Row="4" Grid.Column="1" Margin="0,5,0,5"/>
 
-        <Button Content="Execute" Height="40" Width="90" Grid.Row="5" Grid.Column="1" Margin="5" Background="#3b82f6" Foreground="White" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Execute_Click">
+        <Button Content="Execute" Height="40" Width="90" Grid.Row="5" Grid.Column="1" Background="#3b82f6" Foreground="White" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Execute_Click">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="5"/>

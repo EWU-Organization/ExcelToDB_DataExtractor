@@ -11,6 +11,7 @@
         public required CO Lab { get; set; }
         public required CO Viva { get; set; }
         public required double GrandTotal { get; set; }
+        public required Weight Weights { get; set; }
 
         public class Weight
         {

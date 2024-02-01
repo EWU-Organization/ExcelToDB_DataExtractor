@@ -35,6 +35,11 @@ namespace ExcelToDB_DataExtractor.Utils
                 int index = int.Parse(cell.InnerText);
                 return stringTablePart.SharedStringTable.Elements<SharedStringItem>().ElementAt(index).InnerText;
             }
+            else if (cell.CellValue != null)
+            {
+                // If the cell contains a calculated value, return it
+                return cell.CellValue.Text;
+            }
             else
             {
                 // Otherwise, get the cell value directly
