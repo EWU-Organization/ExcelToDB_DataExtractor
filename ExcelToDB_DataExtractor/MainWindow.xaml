@@ -4,53 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ExcelToDB_DataExtractor"
+        xmlns:uc="clr-namespace:ExcelToDB_DataExtractor.Views.UC"
         mc:Ignorable="d"
-        Title="Excel To Database" Height="285" Width="370" WindowStartupLocation="CenterScreen">
+        Title="Excel To Database" Height="285" Width="370" WindowStartupLocation="CenterScreen" Topmost="True">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="20" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="20" />
-        </Grid.ColumnDefinitions>
-
-        <Grid.RowDefinitions>
-            <RowDefinition Height="20"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="20"/>
-        </Grid.RowDefinitions>
-
-        <TextBlock Text="Excel To Database Extractor" Grid.Row="1" Grid.Column="1" FontSize="24"/>
-        <TextBlock Text="Select Folder with Excel Files" Grid.Row="2" Grid.Column="1" Margin="0,5,0,10" FontSize="14" FontWeight="DemiBold"/>
-
-        <Button Content="Select Folder" Height="40" Width="315" Grid.Row="3" Grid.Column="1" FontSize="16" Click="SelectExcelFilesFolder_Click">
-            <Button.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="5"/>
-                </Style>
-            </Button.Resources>
-        </Button>
-        
-        <TextBlock x:Name="folderPathTextBlock" FontSize="16" Grid.Row="4" Grid.Column="1" Margin="0,5,0,5"/>
-
-        <Button Content="Execute" Height="40" Width="90" Grid.Row="5" Grid.Column="1" Background="#3b82f6" Foreground="White" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Execute_Click">
-            <Button.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="5"/>
-                </Style>
-            </Button.Resources>
-        </Button>
-
-        <ProgressBar x:Name="progressBar" Grid.Row="6" Grid.Column="1" Height="5" IsIndeterminate="True" Visibility="Visible">
-            <ProgressBar.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="2"/>
-                </Style>
-            </ProgressBar.Resources>
-        </ProgressBar>
+        <uc:StartPage x:Name="startPage"/>
+        <uc:Settings x:Name="settings" Visibility="Collapsed"/>
     </Grid>
 </Window>

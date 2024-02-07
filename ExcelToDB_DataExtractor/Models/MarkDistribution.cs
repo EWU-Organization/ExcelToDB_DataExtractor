@@ -4,14 +4,29 @@
     {
         public double ClassParticipation { get; set; }
         public double ClassTest { get; set; }
-        public required CO Midterm1 { get; set; }
-        public required CO Midterm2 { get; set; }
-        public required CO Final { get; set; }
-        public required CO Project { get; set; }
-        public required CO Lab { get; set; }
-        public required CO Viva { get; set; }
+
+        public CourseOutcomes Midterm1 { get; set; }
+        public double Midterm1Total { get; set; }
+        public double Midterm1Converted { get; set; }
+        public CourseOutcomes Midterm2 { get; set; }
+        public double Midterm2Total { get; set; }
+        public double Midterm2Converted { get; set; }
+        public CourseOutcomes Final { get; set; }
+        public double FinalTotal { get; set; }
+        public double FinalConverted { get; set; }
+        public CourseOutcomes Project { get; set; }
+        public double ProjectTotal { get; set; }
+        public double ProjectConverted { get; set; }
+        public CourseOutcomes Lab { get; set; }
+        public double LabTotal { get; set; }
+        public double LabConverted { get; set; }
+        public CourseOutcomes Viva { get; set; }
+        public double VivaTotal { get; set; }
+        public double VivaConverted { get; set; }
+        public CourseOutcomes COContribution { get; set; }
+        
         public required double GrandTotal { get; set; }
-        public required Weight Weights { get; set; }
+        //public required Weight Weights { get; set; }
 
         public class Weight
         {

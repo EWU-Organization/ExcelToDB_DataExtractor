@@ -10,7 +10,7 @@
         public required string CourseTitle { get; set; }
         public required double Credit { get; set; }
         public required string LetterGrade { get; set; }
-        public required bool IsCourseCompleted { get; set; }
+        //public required bool IsCourseCompleted { get; set; }
         public required MarkDistribution MarkDistribution { get; set; }
     }
 }

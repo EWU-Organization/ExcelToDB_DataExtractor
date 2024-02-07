@@ -5,17 +5,19 @@ namespace ExcelToDB_DataExtractor
     internal class Globals
     {
         public static List<Student> Students = new List<Student>();
+
         // Course Details
+        public static string CourseID;
         public static string Instructor;
         public static string CourseCode;
         public static string CourseTitle;
         public static string Semester;
         // public static string LetterGrade;
         public static int Section;
-        public static int Credit;
+        public static double Credit;
         public static bool IsCourseCompleted;
 
-        //Exam details
+        // Exam details
         public static double Midterm1Weight;
         public static double Midterm2Weight;
         public static double FinalWeight;
@@ -30,43 +32,50 @@ namespace ExcelToDB_DataExtractor
         public static string ID;
         public static string Name;
         public static string LetterGrade;
-        public static double SI_NO;
         public static double ClassParticipation;
         public static double ClassTest;
         public static double GrandTotal;
 
         // MIDTERM 1
-        public static List<double> Mid1_CO = new List<double>();
-        public static double Mid1_Total;
-        public static double Mid1_Converted;
+        public static List<double> Mid1CO = new List<double>();
+        public static double Mid1Total;
+        public static double Mid1Converted;
 
         // MIDTERM 2
-        public static List<double> Mid2_CO = new List<double>();
-        public static double Mid2_Total;
-        public static double Mid2_Converted;
+        public static List<double> Mid2CO = new List<double>();
+        public static double Mid2Total;
+        public static double Mid2Converted;
 
         // FINAL
-        public static List<double> Final_CO = new List<double>();
-        public static double Final_Total;
-        public static double Final_Converted;
+        public static List<double> FinalCO = new List<double>();
+        public static double FinalTotal;
+        public static double FinalConverted;
 
         // PROJECT
-        public static List<double> Project_CO = new List<double>();
-        public static double Project_Total;
-        public static double Project_Converted;
+        public static List<double> ProjectCO = new List<double>();
+        public static double ProjectTotal;
+        public static double ProjectConverted;
 
         // LAB
-        public static List<double> Lab_CO = new List<double>();
-        public static double Lab_Total;
-        public static double Lab_Converted;
+        public static List<double> LabCO = new List<double>();
+        public static double LabTotal;
+        public static double LabConverted;
 
-        // CO Individual
-        public static List<double> Indiv_CO = new List<double>();
+        // VIVA
+        public static List<double> VivaCO = new List<double>();
+        public static double VivaTotal;
+        public static double VivaConverted;
 
-        // COIndividualBianry
-        public static List<double> Indiv_BIN_CO = new List<double>();
+        // CO Contribution
+        public static List<double> COContribution = new List<double>();
 
-        //PO INDIVIDUAL
-        public static List<double> Indiv_PO = new List<double>();
+        //// CO Individual
+        //public static List<double> Indiv_CO = new List<double>();
+
+        //// COIndividualBianry
+        //public static List<double> Indiv_BIN_CO = new List<double>();
+
+        ////PO INDIVIDUAL
+        //public static List<double> Indiv_PO = new List<double>();
     }
 }

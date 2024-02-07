@@ -1,6 +1,8 @@
 ﻿using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
+using System.IO;
 using System.Text.RegularExpressions;
+using System.Windows;
 
 namespace ExcelToDB_DataExtractor.Utils
 {
@@ -17,13 +19,20 @@ namespace ExcelToDB_DataExtractor.Utils
         /// <param name="sheetName">An excel sheet that is in the .xlsx file</param>
         public static void Initialize(string file, string sheetName)
         {
-            _SpreadsheetDocument = SpreadsheetDocument.Open(file, false);
+            try
+            {
+                _SpreadsheetDocument = SpreadsheetDocument.Open(file, false);
 
-            // Access the workbook part
-            _WorkbookPart = _SpreadsheetDocument.WorkbookPart;
-            Sheet? sheet = _WorkbookPart.Workbook.Descendants<Sheet>().FirstOrDefault(s => s.Name == sheetName);
+                // Access the workbook part
+                _WorkbookPart = _SpreadsheetDocument.WorkbookPart;
+                Sheet? sheet = _WorkbookPart.Workbook.Descendants<Sheet>().FirstOrDefault(s => s.Name == sheetName);
 
-            if (sheet != null) _WorksheetPart = (WorksheetPart)_WorkbookPart.GetPartById(sheet.Id);
+                if (sheet != null) _WorksheetPart = (WorksheetPart)_WorkbookPart.GetPartById(sheet.Id);
+            }
+            catch (IOException ex)
+            {
+                MessageBox.Show($"Error opening the file {Path.GetFileName(ex.Message)}");
+            }
         }
         private static string GetCellValue(Cell cell, WorkbookPart workbookPart)
         {
@@ -62,6 +71,12 @@ namespace ExcelToDB_DataExtractor.Utils
             return columnName;
         }
 
+        /// <summary>
+        /// Get the value of a cell in the excel sheet
+        /// </summary>
+        /// <param name="row">Row</param>
+        /// <param name="column">Column</param>
+        /// <returns>string</returns>
         public static string? CellValue(int row, int column)
         {
             string cellReference = GetColumnName(column) + row;

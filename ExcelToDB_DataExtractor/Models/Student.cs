@@ -4,6 +4,6 @@
     {
         public required string ID { get; set; }
         public required string Name { get; set; }
-        public required List<Course> Course { get; set; }
+        public required Course Course { get; set; }
     }
 }

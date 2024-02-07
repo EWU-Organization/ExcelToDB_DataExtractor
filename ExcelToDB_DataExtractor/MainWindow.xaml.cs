@@ -1,7 +1,5 @@
-﻿using ExcelToDB_DataExtractor.Utils;
-using Microsoft.Win32;
-using System.IO;
-using System.Windows;
+﻿using System.Windows;
+using System.Windows.Media.Animation;
 
 namespace ExcelToDB_DataExtractor
 {
@@ -10,40 +8,47 @@ namespace ExcelToDB_DataExtractor
     /// </summary>
     public partial class MainWindow : Window
     {
-        private string[]? _excelFilesPath;
-
+        private static MainWindow? _instance;
+        public static MainWindow Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new MainWindow();
+                }
+                return _instance;
+            }
+        }
         public MainWindow()
         {
-            InitializeComponent();
+            InitializeComponent(); //340
+            _instance = this;
+            //WindowAnimation();
         }
 
-        private void SelectExcelFilesFolder_Click(object sender, RoutedEventArgs e)
+        public void WindowAnimation(double from, double to)
         {
-            OpenFolderDialog folderBrowserDialog = new OpenFolderDialog
-            {
-                Title = "Select the folder containing the Excel files",
-            };
+            // Create a new double animation
+            DoubleAnimation animation = new DoubleAnimation();
 
-            if (folderBrowserDialog.ShowDialog() == true)
-            {
-                // Read Excel files
-                _excelFilesPath = Directory.GetFiles(folderBrowserDialog.FolderName, "*.xlsx");
-                folderPathTextBlock.Text = $"Number of files found: {_excelFilesPath.Length}";
-                folderPathTextBlock.Visibility = Visibility.Visible;
-                if (_excelFilesPath.Count() < 1)
-                {
-                    MessageBox.Show("Excel file(s) not found");
-                    folderPathTextBlock.Visibility = Visibility.Collapsed;
-                }
-            }
-        }
+            // Set the start value of the animation
+            animation.From = from; // 285;
 
-        private void Execute_Click(object sender, RoutedEventArgs e)
-        {
-            if (_excelFilesPath?.Length >= 1)
-            {
-                ExcelExtractor.ProcessExcelFiles(_excelFilesPath);
-            }
+            // Set the end value of the animation
+            animation.To = to; // 340;
+
+            // Set the duration of the animation
+            animation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
+
+            // Set the auto reverse property to true
+            //animation.AutoReverse = true;
+
+            // Set the repeat behavior to forever
+            //animation.RepeatBehavior = RepeatBehavior.Forever;
+
+            // Apply the animation to the height property of the window
+            this.BeginAnimation(Window.HeightProperty, animation);
         }
     }
 }
