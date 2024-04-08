@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ExcelToDB_ConsoleApp": {
+      "commandName": "Project",
+      "commandLineArgs": "-u ahhah --password 1234 --dir \"G:\\East West University\\RDA sir Report Generation\""
+    }
+  }
+}

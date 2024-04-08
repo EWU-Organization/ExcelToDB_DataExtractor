@@ -1,7 +1,7 @@
-﻿using ExcelToDB_DataExtractor.Models;
-using ExcelToDB_DataExtractor.Utils;
+﻿using ExcelToDB_ConsoleApp.Models;
+using ExcelToDB_ConsoleApp.Utils;
 
-namespace ExcelToDB_DataExtractor.ExcelSheets
+namespace ExcelToDB_ConsoleApp.ExcelSheets
 {
     internal class Entry
     {

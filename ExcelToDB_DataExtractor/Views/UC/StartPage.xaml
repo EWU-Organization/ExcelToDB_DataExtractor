@@ -32,7 +32,7 @@
                 HorizontalAlignment="Right" VerticalAlignment="Top"
                 Style="{StaticResource MaterialDesignFloatingActionButton}" BorderBrush="Black" Background="Transparent"
                 Height="25" Width="25" Padding="0" Margin="10" Click="Settings_Click">
-            <materialDesign:PackIcon Kind="Settings" Padding="0" Foreground="#4b5563"/>
+            <materialDesign:PackIcon Kind="Settings" Padding="0" Foreground="#4B5563"/>
         </Button>
         
         <TextBlock Text="Select Folder with Excel Files" Grid.Row="2" Grid.Column="1" Margin="0,5,0,10" FontSize="14" FontWeight="DemiBold"/>
